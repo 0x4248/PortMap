@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="robots" content="noindex">
+        <meta http-equiv="cache-control" content="no-cache">
+        <title>PortMap</title>
+        <style>
+            body {
+                background-color: #1d1d1d;
+                color: #ffffff;
+                font-family: arial, sans-serif;
+                font-size: 16px;
+                margin: 0px;
+                padding: 0;
+            }
+            #title {
+                background-color: #000000;
+                color: #ffffff;
+                font-family: arial, sans-serif;
+                font-size: 40px;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+            #content {
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            th, td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+            tr:hover {
+                background-color: #000000;
+            }
+            th {
+                background-color: #000000;
+                color: #ffffff;
+            }
+            a {
+                color: #ffffff;
+            }
+            #footer {
+                background-color: #000000;
+                color: #ffffff;
+                font-family: arial, sans-serif;
+                font-size: 16px;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+                /* bottom */
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="title">PortMap</h1>
+        <div id="content">
+        </div>
+        <div id="footer">
+            <p>This project is <strong>open source</strong> and available on <a href="https://www.github.com/lewisevans2007/PortMap">GitHub</a>.</p>
+        <script async defer>
+            function getJSON(){
+                var xmlhttp = new XMLHttpRequest();
+                var url = "ports.json";
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var myArr = JSON.parse(this.responseText);
+                        appendJSON(myArr);
+                    }
+                };
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send()
+            }
+
+            function appendJSON(arr) {
+                document.getElementById("title").innerHTML = "PortMap - " + arr.name;
+                var out = "<table><tr><th>Port</th><th>Name</th><th>Action</th></tr>";
+                var i;
+                for(i = 0; i < arr.ports.length; i++) {
+                    out += "<tr><td>" +
+                    arr.ports[i].port +
+                    "</td><td>" +
+                    arr.ports[i].name +
+                    "</td><td>" +
+                    "<a href='" + arr.ports[i].action + "'>" + arr.ports[i].action + "</a>" +
+                    "</td></tr>";
+                }
+                out += "</table><br><br><br>";
+                document.getElementById("content").innerHTML = out;
+            }
+            getJSON();
+        </script>
+    </body>
+</html>

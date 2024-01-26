@@ -1,0 +1,16 @@
+{
+    "name": "Web Server",
+
+    "ports": [
+        {
+            "port": 8080,
+            "name": "Example port",
+            "action": "http://localhost:8080"
+        },
+        {
+            "port": 8081,
+            "name": "Annother example port",
+            "action": "http://localhost:8081"
+        }
+    ]
+}
