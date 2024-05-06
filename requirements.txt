@@ -1,0 +1,7 @@
+# PortMap
+# A simple webpage that lists the ports you specify and their corresponding services for quick access.
+# Github: https://www.github.com/0x4248/PortMap
+# Licence: GNU General Public License v3.0
+# By: 0x4248
+
+flask==3.0.3
